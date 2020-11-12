@@ -15,3 +15,7 @@ body {
     width: 100px;
     margin-bottom: -50px;
 }
+
+.divide {
+    border: solid grey;   
+}

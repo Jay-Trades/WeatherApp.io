@@ -4,21 +4,44 @@ const details = document.querySelector('.details');
 const time = document.querySelector('img.time');
 const icon = document.querySelector('.icon img');
 
+//Conversion of Celsius to Farenheight
+const cToF = (celsius) => {
+    let cTemp = celsius;
+    let cToFahr = cTemp * 9 / 5 + 32;
+    let message = `${cToFahr}`;
+    return message;
+}
+
+const fToC = (fahrenheit) => {
+    let fTemp = fahrenheit;
+    let fToCel = (fTemp - 32) * 5 / 9;
+}
+
 const updateUI = (data) => { 
     // const cityDets = data.cityDets;
     // const weather = data.weather;
     //Destructuring Properties
     const { cityDets, weather } = data;
+    const currentTemp = weather.Temperature.Metric.Value;
+    const currentF = cToF(currentTemp);
     
     //Update Details Template
     details.innerHTML = `
     <h5 class="my-3">${cityDets.EnglishName}</h5>
     <div class="my-3">${weather.WeatherText}</div>
-     <div class="display-4 my-4">
+    <hr class="divide"></hr>
+    <div class="display-4 my-4">
         <span>${weather.Temperature.Metric.Value}</span>
         <span>&deg;C</span>
      </div>
+     <hr class="divide"></hr>
+     <div class="display-4 my-4">
+        <span>${currentF}</span>
+        <span>&deg;F</span>
+     </div>
     `;
+
+    
 
     
     const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
